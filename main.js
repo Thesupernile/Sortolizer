@@ -5,7 +5,7 @@ const ctx = canvas.getContext("2d");
 // Setup Variables
 barArray = [];
 lastShuffledBarArray = [];
-numBarsToMake = 128;
+numBarsToMake = 256;
 circleCentreX = Math.round(canvas.width/2);
 circleCentreY = Math.round(canvas.height/2);
 minBarHeight = 50;
@@ -15,9 +15,6 @@ arraySuffledBefore = false;
 shuffling = false;
 sortArray = false;
 runBogo = false;
-
-// Note: Change the sorts so that a sort/shuffle cannot start unless the other sort is compelted (exception bogo)
-
 
 // Class for the bar
 class SortBar {
