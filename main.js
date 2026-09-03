@@ -677,6 +677,27 @@ async function bitonicBuild(listToBuild, trueStartIndex = 0){
     return listToBuild;
 }
 
+async function iCantBelieveItCanSort(arrayToSort){
+    for (let i = 0; i < arrayToSort.length; i++){
+        for (let j = 0; j < arrayToSort.length; j++){
+            if (arrayToSort[i].value < arrayToSort[j].value){
+                arrayToSort = await swapIndexes(arrayToSort, i, j);
+            }
+            else{
+                arrayToSort[i].SetColor(2);
+                arrayToSort[j].SetColor(2);
+                playBleep(j);
+                drawBars();
+                await sleep();
+                arrayToSort[i].SetColor(0);
+                arrayToSort[j].SetColor(0);
+            }
+        }
+    }
+
+    return arrayToSort;
+}
+
 // Entry to each algorithm
 
 async function shuffleBarsEntry(){
@@ -865,6 +886,16 @@ async function bitonicSortEntry(){
     if (!shuffling){
         shuffling = true;
         barArray = await bitonicSort(barArray);
+        await drawBars();
+        await greenPass();
+        shuffling = false;
+    }
+}
+
+async function iCantBelieveItCanSortEntry(){
+    if (!shuffling){
+        shuffling = true;
+        barArray = await iCantBelieveItCanSort(barArray);
         await drawBars();
         await greenPass();
         shuffling = false;
